@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <title>Promos Builder</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="container">
+  <h1>Promos Builder</h1>
+
+  <input type="file" id="fileOrigen"/>
+  <button id="btnPreview">Visualizar</button>
+
+  <div id="previewModal" class="modal">
+    <div class="modal-content">
+      <button onclick="closePreview()">Cerrar</button>
+      <div id="previewContent"></div>
+    </div>
+  </div>
+</div>
+
+<script src="xlsx.full.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
