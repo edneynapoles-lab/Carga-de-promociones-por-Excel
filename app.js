@@ -26,11 +26,11 @@ document.getElementById("btnPreview").addEventListener("click", ()=>{
 
   previewDiv.innerHTML = "";
 
-  const keyNumero = findKey(data, ["n°","numero"]);
-  const keyEAN = findKey(data, ["codigo producto"]);
-  const keyTipo = findKey(data, ["tipo de descuento"]);
-  const keyPrecio = findKey(data, ["pvp oferta pack"]);
-  const keyPct = findKey(data, ["descuento"]);
+	const keyNumero = findKey(data, ["n°","numero","nro"]);
+	const keyEAN = findKey(data, ["codigo producto","ean","codigo"]);
+	const keyTipo = findKey(data, ["tipo de descuento","tipo"]);
+	const keyPrecio = findKey(data, ["pvp oferta pack","precio"]);
+	const keyPct = findKey(data, ["descuento porcentual","porcentaje","%"]);
 
   if(!keyNumero || !keyEAN){
     alert("Columnas no detectadas");
@@ -90,9 +90,27 @@ function normalize(text){
 function findKey(data, posibles){
   const keys = Object.keys(data[0]);
 
+  console.log("HEADERS DETECTADOS:", keys); // 👈 DEBUG
+
+  const normalize = (t)=>
+    t?.toLowerCase()
+     .normalize("NFD")
+     .replace(/[\u0300-\u036f]/g,"")
+     .replace(/[^a-z0-9]/g,"");
+
   for(let p of posibles){
-    const match = keys.find(k => normalize(k).includes(normalize(p)));
-    if(match) return match;
+    const np = normalize(p);
+
+    const match = keys.find(k=>{
+      const nk = normalize(k);
+      return nk.includes(np);
+    });
+
+    if(match){
+      console.log("MATCH:", p, "→", match);
+      return match;
+    }
   }
+
   return null;
 }
