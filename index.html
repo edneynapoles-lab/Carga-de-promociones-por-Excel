@@ -7,21 +7,16 @@
 </head>
 <body>
 
-<div class="container">
-  <h1>Promos Builder</h1>
+<h1>Promos Builder</h1>
 
-  <input type="file" id="fileOrigen"/>
-  <button id="btnPreview">Visualizar</button>
+<input type="file" id="file"/>
+<button id="btnPreview">Visualizar</button>
 
-  <div id="previewModal" class="modal">
-    <div class="modal-content">
-      <button onclick="closePreview()">Cerrar</button>
-      <div id="previewContent"></div>
-    </div>
-  </div>
-</div>
+<div id="preview"></div>
 
-<script src="xlsx.full.min.js"></script>
+<!-- XLSX CDN (IMPORTANTE) -->
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>
